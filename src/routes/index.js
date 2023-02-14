@@ -3,6 +3,8 @@ const path = require('path');
 const router = express.Router();
 const api = require(path.join(__dirname, './api.js'));
 router.use('/api', api);
+const web = require(path.join(__dirname, './web.js'));
+router.use('/', web);
 
 // catch 404 and forward to error handler
 router.use((req, res, next) => {

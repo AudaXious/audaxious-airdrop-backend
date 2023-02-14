@@ -22,18 +22,6 @@ router.get('/twitter/auth', Middleware.auth.verifyToken, (req, res, next) => {
   }
 );
 
-router.get('/twitter/callback', (req, res, next) => {
-  Controllers.Twitter.callback(req, res, next)
-    .catch(err => next(err));
-  }
-);
-
-router.post('/twitter/unbind', Middleware.auth.verifyToken, (req, res, next) => {
-  Controllers.Twitter.unbind(req, res, next)
-    .catch(err => next(err));
-  }
-);
-
 router.get('/airdrop', Middleware.auth.verifyToken, (req, res, next) => {
     Controllers.Airdrop.get(req, res, next)
       .catch(err => next(err));
