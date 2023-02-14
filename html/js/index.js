@@ -5,8 +5,7 @@ const app = {
       name: 'BSC',
       currency: 'BNB',
     },
-    // baseUrl: 'https://airdrop.syntrum.com/api',
-    baseUrl: 'http://127.0.0.1:8772/api',
+    baseUrl: 'https://airdrop.syntrum.com/api',
     contracts: {
       airdrop: {
         abi: [
