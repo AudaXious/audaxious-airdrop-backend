@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous"
+  />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Syntrum Airdrop</title>
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="mt-5 mb-3">Syntrum Airdrop</h1>
+  <div class="row mb-5 signIn">
+    <div class="col col-md-4">
+      <h4>Please sign in with Metamask:</h4>
+      <button
+        onclick="app.signIn()"
+        id="signIn"
+        type="button"
+        class="btn btn-primary"
+      >
+        Sign in
+      </button>
+    </div>
+  </div>
+  <div class="row mb-5 d-none twitterConnect">
+    <div class="col col-md-4">
+      <h4>Connect your Twitter account to your address:</h4>
+      <button
+        onclick="app.twitterAuth()"
+        type="button"
+        class="btn btn-primary"
+      >
+        Authenticate to Twitter
+      </button>
+    </div>
+  </div>
+  <div class="row mb-5 d-none twitterConnected">
+    <div class="col col-12">
+      <h4>You can claim your reward</h4>
+      <button
+        onclick="app.claim()"
+        type="button"
+        class="btn btn-primary"
+      >
+        Claim
+      </button>
+    </div>
+  </div>
+  <div id="alertContainer" class="fixed-top">
+    <div class="container mt-3" style="word-break: break-all;"></div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+<script src="./js/index.js?0"></script>
+</body>
+</html>
