@@ -458,8 +458,8 @@ const app = {
       if (!result.success || !result.result || !result.result.authToken)
         throw new Error('Sign in post request error');
       app.data.authToken = result.result.authToken;
-      localStorage.setItem('address', app.data.authToken);
-      localStorage.setItem('authToken', app.data.address);
+      localStorage.setItem('authToken', app.data.authToken);
+      localStorage.setItem('address', app.data.address);
       document.querySelector('.signIn').classList.add('d-none');
       await this.airdrop();
     })()
