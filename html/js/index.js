@@ -84,6 +84,25 @@ const app = {
             "type": "function"
           },
           {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "userAddress",
+                "type": "address"
+              }
+            ],
+            "name": "earningsReceived",
+            "outputs": [
+              {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
             "inputs": [],
             "name": "getAirdropStatus",
             "outputs": [
@@ -260,6 +279,19 @@ const app = {
             "type": "function"
           },
           {
+            "inputs": [],
+            "name": "tokenBalance",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
             "inputs": [
               {
                 "internalType": "address",
@@ -428,6 +460,15 @@ const app = {
         await this.init();
       if (await this.data.contracts.airdrop.contract.earningsReceived(this.data.address)) {
         return this.alert('This address already received earnings', 'danger')
+      }
+      const amount = Number(ethers.utils.formatUnits(
+        await this.data.contracts.airdrop.contract.getAmount()
+      ));
+      const balance = Number(ethers.utils.formatUnits(
+        await this.data.contracts.airdrop.contract.tokenBalance()
+      ));
+      if (!(balance >= amount)) {
+        return this.alert('Not enough contract balance', 'danger')
       }
       const tx = await this.data.contracts.airdrop.contract.receiveEarnings(this.data.signature);
       this.txMessage(tx.hash);
