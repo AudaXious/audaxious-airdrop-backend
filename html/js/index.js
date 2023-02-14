@@ -426,6 +426,9 @@ const app = {
     (async () => {
       if (!this.initialized)
         await this.init();
+      if (await this.data.contracts.airdrop.contract.earningsReceived(this.data.address)) {
+        return this.alert('This address already received earnings', 'danger')
+      }
       const tx = await this.data.contracts.airdrop.contract.receiveEarnings(this.data.signature);
       this.txMessage(tx.hash);
       const txReady = await tx.wait(3);
