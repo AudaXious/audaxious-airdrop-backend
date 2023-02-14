@@ -327,7 +327,7 @@ const app = {
             "type": "function"
           }
         ],
-        address: '0xD0b8a5db5929625d42e6C0b40DbC7D60C359B65A',
+        address: '0x6E95Acb792946797525f7a301f129eFb685d3f59',
       }
     },
   },
