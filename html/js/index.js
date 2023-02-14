@@ -1,7 +1,7 @@
 const app = {
   data: {
     chain: {
-      id: 5,
+      id: 56,
       name: 'BSC',
       currency: 'BNB',
     },
@@ -359,7 +359,7 @@ const app = {
             "type": "function"
           }
         ],
-        address: '0x6E95Acb792946797525f7a301f129eFb685d3f59',
+        address: '0xbe62e6417be4E38cde712209115D4c67b7d93099',
       }
     },
   },
