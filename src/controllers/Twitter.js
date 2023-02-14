@@ -52,16 +52,16 @@ exports.callback = async (req, res) => {
       });
     if (!record) {
       console.error('Twitter auth request error');
-      return res.redirect(`/test?message=${encodeURI('An error occurred')}&status=danger`);
+      return res.redirect(`/?message=${encodeURI('An error occurred')}&status=danger`);
     }
     if (record.twitterData) {
-      return res.redirect(`/test?message=${encodeURI('Your address is already bound to the Twitter account.')}&status=danger`);
+      return res.redirect(`/?message=${encodeURI('Your address is already bound to the Twitter account.')}&status=danger`);
     }
     if (
       db.prepare('SELECT id FROM users WHERE twitterData LIKE :twitterData')
         .get({twitterData: `%"userId":"${twitterUser.userId}"%`})
     ) {
-      return res.redirect(`/test?message=${encodeURI('This twitter account is already bound to another address.')}&status=danger`);
+      return res.redirect(`/?message=${encodeURI('This twitter account is already bound to another address.')}&status=danger`);
     }
     db.prepare('UPDATE users SET twitterData = :twitterData WHERE id = :id')
       .run({
@@ -70,7 +70,7 @@ exports.callback = async (req, res) => {
       });
 
     // Redirect to whatever route that can handle your new Twitter login user details!
-    res.redirect(`/test?message=${encodeURI(`Twitter account @${twitterUser.userName} was bound to your address ${address}`)}&status=success`);
+    res.redirect(`/?message=${encodeURI(`Twitter account @${twitterUser.userName} was bound to your address ${address}`)}&status=success`);
   });
 }
 

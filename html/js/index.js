@@ -377,6 +377,10 @@ const app = {
     if (message && status) {
       app.alert(decodeURI(message), decodeURI(status));
     }
+    if (localStorage.getItem('authToken')) {
+      app.data.authToken = localStorage.getItem('authToken');
+      await this.airdrop();
+    }
     return true;
   },
   airdrop () {
@@ -415,6 +419,8 @@ const app = {
       window.location.reload(true);
     }
     (async () => {
+      if (!this.initialized)
+        await this.init();
       const tx = await this.data.contracts.airdrop.contract.receiveEarnings(this.data.signature);
       this.txMessage(tx.hash);
       const txReady = await tx.wait(3);
@@ -452,6 +458,8 @@ const app = {
       if (!result.success || !result.result || !result.result.authToken)
         throw new Error('Sign in post request error');
       app.data.authToken = result.result.authToken;
+      localStorage.setItem('address', app.data.authToken);
+      localStorage.setItem('authToken', app.data.address);
       document.querySelector('.signIn').classList.add('d-none');
       await this.airdrop();
     })()
@@ -499,7 +507,7 @@ const app = {
   },
   txMessage (hash) {
     this.alert(`
-      Tx hash <a target="_blank" href="https://polygonscan.com/tx/${hash}">${hash}</a> 
+      Tx hash <a target="_blank" href="https://bscscan.com/tx/${hash}">${hash}</a> 
       Please wait until transaction completed.
     `);
   },
