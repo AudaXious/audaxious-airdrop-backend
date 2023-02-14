@@ -28,10 +28,6 @@ exports.get = async(req, res) => {
       result: {
         twitterConnect: true,
       },
-      message: {
-        text: 'Twitter account is not bound to this address',
-        status: 'danger',
-      },
     });
   }
 
