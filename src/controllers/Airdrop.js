@@ -44,16 +44,14 @@ exports.get = async(req, res) => {
     db.prepare('UPDATE users SET signature = :signature WHERE address = :address')
       .run({ signature, address });
     return res.send({
+      success: true,
       result: {
-        success: true,
-        result: {
-          signature,
-        },
-        message: {
-          text: 'Congratulations, your twitter account has won',
-          status: 'success',
-        },
-      }
+        signature,
+      },
+      message: {
+        text: 'Congratulations, your twitter account has won',
+        status: 'success',
+      },
     });
   }
   return res.send({
