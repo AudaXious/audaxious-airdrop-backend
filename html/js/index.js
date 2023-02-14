@@ -380,6 +380,9 @@ const app = {
     if (localStorage.getItem('authToken')) {
       app.data.authToken = localStorage.getItem('authToken');
       await this.airdrop();
+    } else {
+      document.querySelector('.signIn')
+        .classList.remove('d-none');
     }
     return true;
   },
