@@ -379,6 +379,8 @@ const app = {
     }
     if (localStorage.getItem('authToken')) {
       app.data.authToken = localStorage.getItem('authToken');
+      document.querySelector('.signOut')
+        .classList.remove('d-none');
       await this.airdrop();
     } else {
       document.querySelector('.signIn')
@@ -463,13 +465,20 @@ const app = {
       app.data.authToken = result.result.authToken;
       localStorage.setItem('authToken', app.data.authToken);
       localStorage.setItem('address', app.data.address);
-      document.querySelector('.signIn').classList.add('d-none');
+      document.querySelector('.signIn')
+        .classList.add('d-none');
+      document.querySelector('.signOut')
+        .classList.remove('d-none');
       await this.airdrop();
     })()
       .catch(error => {
         this.alert('Initialization error', 'danger');
         console.error(error);
       });
+  },
+  signOut() {
+    localStorage.setItem('authToken', '');
+    location.reload(true);
   },
   twitterAuth () {
     (async () => {
